@@ -59,10 +59,10 @@ function Input({
   };
 
   return (
-    <div className={inputLayoutWrapper}>
+    <div className={`${inputLayoutWrapper}`}>
       {/* Label */}
       {label && (
-        <label htmlFor={id} className={labelStyle}>
+        <label htmlFor={id} className={`${labelStyle} hover:cursor-pointer`}>
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -105,7 +105,7 @@ function Input({
       />
 
       {/* Fixed Layout for Error & Helper Text */}
-      <div className="min-h-[28px] max-w-[200px] w-full">
+      <div className="min-h-[28px] max-w-[300px] w-full">
         {helperText && !showError && (
           <p className={`${helperTextStyle} truncate`}>{helperText}</p>
         )}
