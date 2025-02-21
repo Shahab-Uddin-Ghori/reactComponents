@@ -1,18 +1,45 @@
 /* eslint-disable react/prop-types */
 
+/* 
+🔹 Button Component - A global, scalable, and reusable button component
+
+Features:
+- Supports text, icons, and images
+- Customizable layout (icon & image positions)
+- Different sizes and variants (primary, secondary, danger, etc.)
+- Handles disabled states correctly
+- Fully responsive & accessible
+
+🔹 Props:
+- title (string) → Button text
+- children (ReactNode) → Additional elements inside the button
+- type (string) → "button", "submit", "reset" (default: "button")
+- icon (ReactNode) → Icon component (SVG, FontAwesome, etc.)
+- iconOrder ("left" | "right") → Position of the icon (default: "left")
+- onClick (function) → Click event handler
+- variant ("primary" | "secondary" | "danger" | "success" | "outline") → Button style (default: "primary")
+- disabled (boolean) → Disables button if true
+- className (string) → Custom Tailwind classes
+- size ("sm" | "md" | "lg") → Button size (default: "md")
+- img (string) → Image source (for button icon/image)
+- imgOrder ("left" | "right") → Position of the image (default: "left")
+- imgWidth (string | number) → Image width (default: "30")
+- alt (string) → Image alt text (default: "Image Button")
+*/
+
 function Button({
   title,
   children,
   type = "button",
   icon,
-  iconOrder,
+  iconOrder = "left",
   onClick,
   variant = "primary",
   disabled = false,
   className = "",
   size = "md",
   img,
-  imgOrder,
+  imgOrder = "left",
   imgWidth = "30",
   alt = "Image Button",
 }) {
@@ -40,7 +67,6 @@ function Button({
       } ${baseStyles} ${sizeStyles[size]} ${className}`}
     >
       {iconOrder === "left" && icon}
-      {/* for svg, img render */}
       {imgOrder === "left" && img && (
         <img src={img} width={imgWidth} alt={alt} />
       )}
