@@ -4,10 +4,10 @@
 How to Use:
 - Basic props: type, name, id, onChange, value, placeholder, label, disabled, readOnly
 - Layout & Style Customization:
-  - inputLayoutWrapper → Wrapper div for label, input, helper text, and error text
-  - labelStyle → Custom label styling
-  - helperTextStyle → Custom helper text styling
-  - errorStyle → Custom error styling
+  - wrapperClass → Wrapper div for label, input, helper text, and error text
+  - labelClass → Custom label styling
+  - helperClass → Custom helper text styling
+  - errorClass → Custom error styling
 - Error Handling:
   - error → Custom error message
   - showError → State that enables when form submission fails
@@ -39,13 +39,14 @@ function Input({
   maxLength,
   min,
   max,
+  key,
   inputMode,
   hideNumberArrows = true, //  Removes number input arrows by default
-  inputLayoutWrapper = "flex flex-col gap-1 w-full max-w-[300px]",
+  wrapperClass = "flex flex-col gap-1 w-full max-w-[300px]",
   className = "",
-  labelStyle = "font-medium text-gray-700",
-  helperTextStyle = "text-gray-500 text-sm",
-  errorStyle = "text-red-500 text-[12px] break-words w-full",
+  labelClass = "font-medium text-gray-700",
+  helperClass = "text-gray-500 text-sm",
+  errorClass = "text-red-500 text-[12px] break-words w-full",
 }) {
   const InputEnum = {
     text: "text",
@@ -59,10 +60,10 @@ function Input({
   };
 
   return (
-    <div className={`${inputLayoutWrapper}`}>
+    <div className={`${wrapperClass}`}>
       {/* Label */}
       {label && (
-        <label htmlFor={id} className={`${labelStyle} hover:cursor-pointer`}>
+        <label htmlFor={id} className={`${labelClass} hover:cursor-pointer`}>
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -78,6 +79,7 @@ function Input({
         disabled={disabled}
         readOnly={readOnly}
         required={required}
+        key={key}
         pattern={
           type === "tel" ? "[0-9]*" : pattern //  Only allows digits in "tel"
         }
@@ -107,9 +109,9 @@ function Input({
       {/* Fixed Layout for Error & Helper Text */}
       <div className="min-h-[28px] max-w-[300px] w-full">
         {helperText && !showError && (
-          <p className={`${helperTextStyle} truncate`}>{helperText}</p>
+          <p className={`${helperClass} truncate`}>{helperText}</p>
         )}
-        {error && showError && <p className={errorStyle}>{error}</p>}
+        {error && showError && <p className={errorClass}>{error}</p>}
       </div>
 
       {/* Custom CSS to Hide Number Arrows */}
